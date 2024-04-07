@@ -1,6 +1,8 @@
 const express = require("express"); // import du package express
+const cors = require("cors");
 const app = express(); // création du serveur
 app.use(express.json());
+app.use(cors());
 
 const charactersRoutes = require("./routes/characters");
 const comicsRoutes = require("./routes/comics")
@@ -20,6 +22,6 @@ app.all("*", (req, res) => {
   res.json({message: "Page not found"});
 });
 
-app.listen(3000, () => { // Mon serveur va écouter le port 3000
+app.listen(process.env.PORT || 3000, () => { // Mon serveur va écouter le port 3000
   console.log("Server has started"); // Quand je vais lancer ce serveur, la callback va être appelée
 });
